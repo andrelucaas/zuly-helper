@@ -1,0 +1,16 @@
+{
+  "name": "zuly-helper",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 ."
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0"
+  }
+}
