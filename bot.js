@@ -25,6 +25,7 @@ client.twitter = new Twit({
 
 // Tweets stream
 client.on('ready', async () => {
+	console.log('[ZULY SOCIAL MEDIA] Services ready!');
 	const tweets = await client.twitter.stream('statuses/filter', { follow: ['845716781482303489', '1281564741543120897'] });
 	tweets.on('tweet', tweet => {
 		const hook = new WebhookClient({
@@ -38,23 +39,6 @@ client.on('ready', async () => {
 			avatarURL: tweet.user.profile_image_url_https,
 			content: `\`\`\`${tweet.text}\`\`\`\n🔗 › ${url}`
 		});
-	});
-
-	const tweets2 = await client.twitter.stream('statuses/sample');
-	tweets2.on('tweet', tweet => {
-		const hook = new WebhookClient({
-			id: config.webhook2.id,
-			token: config.webhook2.token
-		});
-
-		const url = 'https://twitter.com/' + tweet.user.screen_name + '/status/' + tweet.id_str;
-		setTimeout(() => {
-			hook.send({
-				username: tweet.user.name,
-				avatarURL: tweet.user.profile_image_url_https,
-				content: `\`\`\`${tweet.text}\`\`\`\n🔗 › ${url}`
-			});
-		}, 3000);
 	});
 });
 
